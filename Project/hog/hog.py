@@ -66,6 +66,11 @@ def take_turn(num_rolls, player_score, opponent_score, dice=six_sided):
     assert num_rolls <= 10, 'Cannot roll more than 10 dice.'
     # BEGIN PROBLEM 3
     "*** YOUR CODE HERE ***"
+    if num_rolls == 0:
+        result = boar_brawl(player_score, opponent_score);
+    else:
+        result = roll_dice(num_rolls, dice)
+    return result
     # END PROBLEM 3
 
 
@@ -91,12 +96,26 @@ def num_factors(n):
     """Return the number of factors of N, including 1 and N itself."""
     # BEGIN PROBLEM 4
     "*** YOUR CODE HERE ***"
+    count = 0
+    for i in range(1, n + 1):
+        if n % i == 0:
+            count = count + 1
+    return count
     # END PROBLEM 4
 
 def sus_points(score):
     """Return the new score of a player taking into account the Sus Fuss rule."""
     # BEGIN PROBLEM 4
     "*** YOUR CODE HERE ***"
+    if num_factors(score) == 3 or num_factors(score) == 4:
+        while 1:
+            i = score + 1
+            if is_prime(i):
+                return i
+            else:
+                i = i + 1
+    else:
+        return score
     # END PROBLEM 4
 
 def sus_update(num_rolls, player_score, opponent_score, dice=six_sided):
@@ -105,6 +124,9 @@ def sus_update(num_rolls, player_score, opponent_score, dice=six_sided):
     """
     # BEGIN PROBLEM 4
     "*** YOUR CODE HERE ***"
+    player_score = player_score + take_turn(num_rolls, player_score, opponent_score, dice)
+    player_score = sus_points(player_score)
+    return player_score
     # END PROBLEM 4
 
 
