@@ -108,8 +108,8 @@ def sus_points(score):
     # BEGIN PROBLEM 4
     "*** YOUR CODE HERE ***"
     if num_factors(score) == 3 or num_factors(score) == 4:
+        i = score + 1
         while 1:
-            i = score + 1
             if is_prime(i):
                 return i
             else:
@@ -166,6 +166,13 @@ def play(strategy0, strategy1, update,
     who = 0  # Who is about to take a turn, 0 (first) or 1 (second)
     # BEGIN PROBLEM 5
     "*** YOUR CODE HERE ***"
+    who = 0
+    while score0 < goal and score1 < goal:
+        if who == 0:
+            score0 = update(strategy0(score0, score1), score0, score1, dice)
+        else:
+            score1 = update(strategy1(score1, score0), score1, score0, dice)
+        who = 1 - who
     # END PROBLEM 5
     return score0, score1
 
