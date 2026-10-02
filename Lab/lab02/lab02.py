@@ -86,6 +86,10 @@ def multiple(a, b):
     42
     """
     "*** YOUR CODE HERE ***"
+    i = a if a > b else b
+    while not(i % a == 0 and i % b == 0):
+        i += 1
+    return i
 
 
 
@@ -116,4 +120,16 @@ def cycle(f1, f2, f3):
     19
     """
     "*** YOUR CODE HERE ***"
-
+    def g(n):
+        def h(y):
+            return y
+        if n > 0:
+            for i in range(1, n + 1):
+                if i % 3 == 1:
+                    h = lambda x, old_h=h: f1(old_h(x))
+                elif i % 3 == 2:
+                    h = lambda x, old_h=h: f2(old_h(x))
+                elif i % 3 == 0:
+                    h = lambda x, old_h=h: f3(old_h(x))
+        return h
+    return g
