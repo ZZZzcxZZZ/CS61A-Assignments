@@ -14,7 +14,13 @@ def composite_identity(f, g):
     False
     """
     "*** YOUR CODE HERE ***"
-
+    def result(x):
+        if f(g(x)) == g(f(x)):
+            return True
+        else:
+            return False
+    
+    return result
 
 def sum_digits(y):
     """Return the sum of the digits of non-negative integer y."""
