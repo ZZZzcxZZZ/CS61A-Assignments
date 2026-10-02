@@ -66,6 +66,15 @@ def count_cond(condition):
     8
     """
     "*** YOUR CODE HERE ***"
+    def result(n):
+        j = 1
+        count = 0
+        while j <= n:
+            if condition(n, j):
+                count += 1
+            j += 1
+        return count
+    return result
 
 
 def multiple(a, b):
