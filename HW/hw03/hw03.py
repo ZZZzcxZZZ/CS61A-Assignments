@@ -80,6 +80,17 @@ def interleaved_sum(n, odd_func, even_func):
     True
     """
     "*** YOUR CODE HERE ***"
+    def assistant(k, test=1):
+        if k > n:
+            return 0
+        if test == 1:
+            test = 0
+            return assistant(k + 1, test) + odd_func(k)
+        elif test == 0:
+            test = 1
+            return assistant(k + 1, test) + even_func(k)
+
+    return assistant(1)
 
 
 def next_smaller_dollar(bill):
@@ -116,6 +127,16 @@ def count_dollars(total):
     True
     """
     "*** YOUR CODE HERE ***"
+    def count_partitions(n, m=100):
+        if n == 0:
+            return 1
+        elif n < 0:
+            return 0
+        elif m == 1:
+            return count_partitions(n-m, m)
+        else:
+            return count_partitions(n - m, m) + count_partitions(n, next_smaller_dollar(m))
+    return count_partitions(total)
 
 
 def next_larger_dollar(bill):
