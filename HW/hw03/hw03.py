@@ -173,7 +173,19 @@ def count_dollars_upward(total):
     True
     """
     "*** YOUR CODE HERE ***"
-
+    def count_partitions(n, m=1):
+        if n == 0:
+            return 1
+        elif n < 0:
+            return 0
+        elif m == 100:
+            if n % 100 == 0:
+                return 1
+            else:
+                return 0
+        else:
+            return count_partitions(n - m, m) + count_partitions(n, next_larger_dollar(m))
+    return count_partitions(total)
 
 def print_move(origin, destination):
     """Print instructions to move a disk."""
@@ -208,7 +220,9 @@ def move_stack(n, start, end):
     """
     assert 1 <= start <= 3 and 1 <= end <= 3 and start != end, "Bad start/end"
     "*** YOUR CODE HERE ***"
-
+    move_stack(n - 1, start, 6 - start - end)
+    print_move(start ,end)
+    move_stack(n - 1, 6 - start - end, end)
 
 from operator import sub, mul
 
@@ -223,5 +237,5 @@ def make_anonymous_factorial():
     ...     ['Assign', 'AnnAssign', 'AugAssign', 'NamedExpr', 'FunctionDef', 'Recursion'])
     True
     """
-    return 'YOUR_EXPRESSION_HERE'
+    return (lambda f: lambda n: f(f, n))(lambda self, n: 1 if n == 0 else mul(n, self(self, sub(n, 1))))
 
