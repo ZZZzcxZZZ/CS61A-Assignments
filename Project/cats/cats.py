@@ -38,6 +38,11 @@ def pick(paragraphs, select, k):
     """
     # BEGIN PROBLEM 1
     "*** YOUR CODE HERE ***"
+    arr = [t for t in paragraphs if select(t)]
+    if len(arr) > k and arr != []:
+        return arr[k]
+    else:
+        return ''
     # END PROBLEM 1
 
 
@@ -58,6 +63,12 @@ def about(subject):
 
     # BEGIN PROBLEM 2
     "*** YOUR CODE HERE ***"
+    def f(paragraphs):
+        for item in [lower(x) for x in subject]:
+            if item in split(lower(remove_punctuation(paragraphs))):
+                return True
+        return False
+    return f
     # END PROBLEM 2
 
 

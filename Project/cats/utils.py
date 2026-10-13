@@ -37,7 +37,7 @@ def lower(s):
 
 def split(s):
     """Return a list of words contained in s, which are sequences of characters
-    separated by whitespace (spaces, tabs, etc.).
+    separated by whitespace (spaces, tabs, etc.).把句子拆成单独的单词
 
     >>> split("It's a lovely day, don't you think?")
     ["It's", 'a', 'lovely', 'day,', "don't", 'you', 'think?']
